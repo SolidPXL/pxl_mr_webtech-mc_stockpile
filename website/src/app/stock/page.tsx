@@ -35,7 +35,7 @@ export default function Stock(){
     //Graph data
 
     const xAxisLabels = stock.map((item:{id:number,item:string,amount:number})=>{return item.item})
-    const yAxisLabels = stock.map((item:{id:number,item:string,amount:number})=>{return item.amount})
+    const yAxisLabels = stock.map((item:{id:number,item:string,amount:number})=>{return {value:item.amount,itemStyle:{color:colormap[item.item]}}})
 
     const echartsOption:EChartsOption = {
         title: {
@@ -64,19 +64,63 @@ export default function Stock(){
                     }
                   }
             }
-        ],
-        color:[
-            '#999999',
-            '#f9fefd',
-            '#d1bd72',
-            '#1ecc0f',
-            '#876d38',
-            '#766657',
-            '#a0da70',
-            '#ffac39',
-            '#e3aa49',
-            '#e0cf8e'
         ]
+    }
+
+
+    function exportLogs(event:React.MouseEvent<HTMLButtonElement>){
+        event.preventDefault()
+        axios.get(`${process.env.BASE_URL}/api/get?type=log`).then((res:AxiosResponse)=>{
+            const stringmap = ['id;item;method;amount;extra;created;updated\n']
+            res.data.forEach((element:{id:number,item:string,method:'ADD'|'REMOVE'|'ERR',amount:number,extra:string|null,createdAt:string,updatedAt:string})=>{
+                stringmap.push(`${element.id};${element.item};${element.method};${element.amount};${element.extra};${element.createdAt};${element.updatedAt}\n`)
+            })
+            // const datastring = stringmap.join('\n')
+            const file = new File(stringmap, 'logs.csv', {
+                type: 'text/plain',
+            })
+
+            const link = document.createElement('a')
+            const url = URL.createObjectURL(file)
+
+            link.href = url
+            link.download = file.name
+            document.body.appendChild(link)
+            link.click()
+
+            document.body.removeChild(link)
+            window.URL.revokeObjectURL(url)
+
+            // window.open(url,"_self")
+        })
+        
+    }
+
+    function exportStock(event:React.MouseEvent<HTMLButtonElement>){
+        event.preventDefault()
+        axios.get(`${process.env.BASE_URL}/api/get?type=stock&item=all`).then((res:AxiosResponse)=>{
+            const stringmap = ['id;item;amount\n']
+            res.data.forEach((element:{id:number,item:string,amount:number})=>{
+                stringmap.push(`${element.id};${element.item};${element.amount}\n`)
+            })
+            // const datastring = stringmap.join('\n')
+            const file = new File(stringmap, 'stock.csv', {
+                type: 'text/plain',
+            })
+
+            const link = document.createElement('a')
+            const url = URL.createObjectURL(file)
+
+            link.href = url
+            link.download = file.name
+            document.body.appendChild(link)
+            link.click()
+
+            document.body.removeChild(link)
+            window.URL.revokeObjectURL(url)
+
+            // window.open(url,"_self")
+        })
     }
 
     return(
@@ -105,6 +149,12 @@ export default function Stock(){
             </div>
             <div className={styles.pageDiv}>
                 <h2>Data dump</h2>
+                <div className={styles.buttons}>
+                    <div/>
+                    <button className={styles.downloadButton} onClick={(event:React.MouseEvent<HTMLButtonElement>)=>{exportLogs(event)}}>Download log CSV</button>
+                    <button className={styles.downloadButton} onClick={(event:React.MouseEvent<HTMLButtonElement>)=>{exportStock(event)}}>Download stock CSV</button>
+                    <div/>
+                </div>
             </div>
         </main>
     )
@@ -121,6 +171,19 @@ const images:{[key:string]:StaticImageData} = {
     wheatseed,
     cabbageseed,
     sandwich
+}
+
+const colormap:{[key:string]:string} = {
+    cabbage:'#a0da70',
+    carrot:'#ffac39',
+    potato:'#be9027',
+    wool: '#f9fefd',
+    wheat:'#ffdf8d',
+    feather: '#999999',
+    egg:'#d5bf90',
+    wheatseed:'#1ecc0f',
+    cabbageseed:'#766657',
+    sandwich:'#876d38'
 }
 
 function ItemCard(props:{item:string,imgURL:StaticImageData, stock:number}){
