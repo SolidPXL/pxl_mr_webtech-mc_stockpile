@@ -1,0 +1,90 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6rem 12rem;
+    min-height: 100vh;
+}
+
+.pageDiv{
+    width: 100%;
+}
+
+.pageDiv h2,.pageDiv h3{
+    width: 100%;
+    text-align: center;
+}
+
+.cardwrapper{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-auto-rows: 300px;
+    gap: 20px;
+    margin-bottom: 64px;
+}
+
+
+.stockCard{
+    flex: 1 0 300px;
+    display: flex;
+    height: 100%;
+    background-color: white;
+    border: 2px solid #000;
+    border-radius: 10px;
+    flex-direction: column;
+}
+
+.stockCardImgAlign{
+    height: 100px;
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.stockCardImgBox{
+    width: 50px;
+    height: 50px;
+}
+
+.stockCardTitle{
+    width: 100%;
+    text-align: center;
+    height: 32px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.stockCardAmount{
+    flex-grow: 1;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    font-size: 84px;
+}
+
+.logWrapper{
+    width: 85%;
+    margin: 0px auto;
+    height: 300px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.logItemWrapper{
+    display: grid;
+    grid-template-columns: 24px auto 160px 160px 400px;
+    grid-template-rows: 24px;
+}
+
+.logItemAlign{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid rgba(0,0,0,0.2);
+}
