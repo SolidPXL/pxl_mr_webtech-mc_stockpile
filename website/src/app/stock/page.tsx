@@ -128,8 +128,8 @@ export default function Stock(){
             <div className={styles.pageDiv}>
                 <h2>Stock</h2>
                 <div className={styles.cardwrapper}>
-                    {stock.map((element:{id:number,item:string,amount:number})=>{
-                        return <ItemCard item={element.item} imgURL={images[element.item]} stock={element.amount}/>
+                    {stock.map((element:{id:number,item:string,amount:number},index:number)=>{
+                        return <ItemCard item={element.item} imgURL={images[element.item]} stock={element.amount} key={`stock ${index}`}/>
                     })}
                 </div>
                 <h3>Graph</h3>
@@ -142,8 +142,8 @@ export default function Stock(){
                 <h2>Logs</h2>
                 <div className={styles.logWrapper}>
                     <LogItem item={'Name'} method={'other'} date={'Date'} amount={'Amount'}/>
-                    {logs.map((element:{id:number,item:string,method:'ADD'|'REMOVE'|'ERR',amount:number,extra:string|null,createdAt:string,updatedAt:string})=>{
-                        return <LogItem item={element.item} method={element.method} date={element.createdAt} amount={element.amount}></LogItem>
+                    {logs.map((element:{id:number,item:string,method:'ADD'|'REMOVE'|'ERR',amount:number,extra:string|null,createdAt:string,updatedAt:string},index:number)=>{
+                        return <LogItem item={element.item} method={element.method} date={element.createdAt} amount={element.amount} key={`stock ${index}`}></LogItem>
                     })}
                 </div>
             </div>

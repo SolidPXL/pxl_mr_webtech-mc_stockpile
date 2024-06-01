@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 
-import stockImage from "../../public/stock1.png"
+import stockImage from "../../public/Stock1.png"
 import backstockImage from "/public/Backstock1.png"
 import frontImage from "/public/Front1.png"
 import farmImage from "/public/Farm.png"
@@ -26,7 +26,7 @@ export default function Home() {
       </div>
       <div className={`${styles.textDivision} ${styles.rightImageGrid}`} style={{gridTemplateRows:'64px auto auto'}}>
         <h2>But... Why?</h2>
-        <p>Tracking your stockpile on a minecraft server is a cumbersome task. Firstly you have to boot up the game, which can take quite a while with as many mods as in the Valhelsia 6 modpack. Secondly you have to walk in your minecraft world towards your stockpile. In my case this tends to be pretty far away from where I usually am. All in all it would cost me 10 whole minutes to check the stockile. Don't event get me started on the time it would take to measure the performance. This all has become so much easier by spending 12 hours to automate something that would manually take 10 minutes. My life has become much easier now. And besides, due to the fact that the farm only works when atleast 1 person is online I can also remotely see when somebody is online so I can hop on aswell and I do not have to play without friends anymore.</p>
+        <p>Tracking your stockpile on a minecraft server is a cumbersome task. Firstly you have to boot up the game, which can take quite a while with as many mods as in the Valhelsia 6 modpack. Secondly you have to walk in your minecraft world towards your stockpile. In my case this tends to be pretty far away from where I usually am. All in all it would cost me 10 whole minutes to check the stockile. Don&#39;t event get me started on the time it would take to measure the performance. This all has become so much easier by spending 12 hours to automate something that would manually take 10 minutes. My life has become much easier now. And besides, due to the fact that the farm only works when atleast 1 person is online I can also remotely see when somebody is online so I can hop on aswell and I do not have to play without friends anymore.</p>
         <div className={styles.rightimageWrapper}>
           <Image src={frontImage} alt={"Image of a a minecraft create mod stock"} width={200} height={320} layout="responsive"></Image>
         </div>
