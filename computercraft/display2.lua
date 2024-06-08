@@ -93,7 +93,7 @@ do
 		http.request { url = "https://server-of-axel.pxl.bjth.xyz/api/post", method="POST",body=reqstring,headers={["content-type"]="application/json"}}
 		print("Adding cabbageseed " .. dif)
 	elseif currentstock.cabbageseed < prevStock.cabbageseed then
-		local dif = prevStock.cabbageseed - currentstock.potato
+		local dif = prevStock.cabbageseed - currentstock.cabbageseed
 		local reqstring = '{"item":"cabbageseed","method":"REMOVE","amount":'..dif..'}'
 		http.request { url = "https://server-of-axel.pxl.bjth.xyz/api/post", method="POST",body=reqstring,headers={["content-type"]="application/json"}}
 		print("Removing cabbageseed " .. dif)
